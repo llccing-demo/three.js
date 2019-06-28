@@ -1,6 +1,7 @@
 var cabinet = function() {
   this.servers = [];
   this.cabinet = [];
+  this.cabinetWrapper = [];
 };
 
 cabinet.prototype.init = function() {
@@ -9,7 +10,7 @@ cabinet.prototype.init = function() {
 };
 
 cabinet.prototype.addCabinet = function() {
-  scene.add(this.initServerGroup(5));
+  scene.add(this.initServerGroup(8));
 };
 
 // 服务器组 就是机柜
@@ -17,11 +18,28 @@ cabinet.prototype.initServerGroup = function(n) {
   var group = new THREE.Group();
   for (let i = 0; i < n; i++) {
     let cube = this.initServer();
-    cube.position.y = 55 * (i - 1);
+    cube.position.y = 60 * (i - 1) + 60/2+60;
     this.servers.push(cube);
     console.log(this.servers);
     group.add(cube);
   }
+  
+  var cubeBig = new THREE.Mesh(new THREE.BoxGeometry(120, 500, 220),  new THREE.MeshLambertMaterial({ color: 0x323232 }));
+  cubeBig.position.y = 250
+  
+  var cubeSmall = new THREE.Mesh(new THREE.BoxGeometry(120, 490, 210),  new THREE.MeshLambertMaterial({ color: 0x323232 }));
+  cubeSmall.position.y = 250
+  var cubeBigBSP = new ThreeBSP(cubeBig);
+  var cubeSmallBSP = new ThreeBSP(cubeSmall);
+  var resultBSP = cubeBigBSP.subtract(cubeSmallBSP);
+  var result = resultBSP.toMesh();
+   //更新模型的面和顶点的数据
+   result.geometry.computeFaceNormals();
+   result.geometry.computeVertexNormals();
+   result.material = new THREE.MeshLambertMaterial({ color: 0x000000 })
+   group.add(result)
+  this.cabinetWrapper.push(result)
+  
 
   // var earthDiv = document.createElement('div');
   // earthDiv.textContent = 'Earth';
@@ -38,7 +56,6 @@ cabinet.prototype.initServerGroup = function(n) {
 cabinet.prototype.initServer = function() {
   let cube;
   let cubeGeometry = new THREE.BoxGeometry(100, 50, 200);
-  let cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xffaa00, wireframe: true });
 
   let materials = [
     new THREE.MeshLambertMaterial({ color: 0x323232 }),
@@ -96,6 +113,7 @@ cabinet.prototype.bindEvent = function(self) {
         // 如果不在缓存中，那么仍然展示选中效果
         if (!has) {
           self.showCabinetInfo(Math.random());
+          self.hideCabinetWrapper();
           lastIntersects.push(intersects[0]);
           intersects[0].object.material.forEach((item) => {
             item.color.set(0xff0000);
@@ -129,10 +147,23 @@ cabinet.prototype.showCabinetInfo = function(text) {
   info.textContent = text;
 };
 
+
 cabinet.prototype.hideCabinetInfo = function(text) {
   let info = document.getElementById('info');
   info.style.display = 'none';
 };
+
+cabinet.prototype.hideCabinetWrapper = function(){
+  this.cabinetWrapper.forEach(item => {
+    item.material.color.set(0xffffff)
+  })
+}
+
+cabinet.prototype.showCabinetWrapper = function(){
+  this.cabinetWrapper.forEach(item => {
+    item.material.color.set(0x000000)
+  })
+}
 
 function getTextMaterial() {
   var canvas = document.createElement('canvas');

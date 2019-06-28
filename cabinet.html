@@ -19,11 +19,21 @@
         background-color: rgba(0,0,0, 0.1);
         z-index: 1;
       }
+      #control{
+        position: absolute;
+        bottom: 0;
+        height: 100px;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <div id="container"></div>
     <div id="info"></div>
+    <div id="control">
+        <label><input type="radio" name="showCabinet" value="1"> 展示机柜</label> 
+        <label><input type="radio" name="showCabinet" value="2"> 隐藏机柜</label> 
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -36,6 +46,7 @@
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 
     <script src="./logic/cabinet.js"></script>
+    <script src="./logic/commonEvent.js"></script>
     <script src="./logic/index.js"></script>
   </body>
 </html>

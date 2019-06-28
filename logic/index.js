@@ -5,8 +5,11 @@ const C_WALL_HEIGHT = 100;
 
 init();
 animate();
-var cabinet = new cabinet();
-cabinet.init();
+var cabinetIntance = new cabinet();
+cabinetIntance.init();
+
+var commonEventInstance = new commonEvent();
+commonEventInstance.init();
 
 function init() {
   var container = document.getElementById('container')
