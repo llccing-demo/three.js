@@ -3,6 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>server</title>
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+      }
+      #info{
+        position: absolute;
+        display: none;
+        top: 0;
+        right: 0;
+        width: 500px;
+        height: 500px;
+        padding: 10px;
+        background-color: rgba(0,0,0, 0.1);
+        z-index: 1;
+      }
+    </style>
   </head>
   <body>
     <div id="container"></div>
@@ -14,7 +31,9 @@
     <script src="./js/OrbitControls.js"></script>
     <script src="./js/ThreeBSP.js"></script>
     <script src="./js/stats.min.js"></script>
+    <script src="./js/jsm/renderers/CSS2DRenderer.js"></script>
     <script src="https://cdn.bootcss.com/dat-gui/0.7.3/dat.gui.js"></script>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 
     <script src="./logic/cabinet.js"></script>
     <script src="./logic/index.js"></script>
