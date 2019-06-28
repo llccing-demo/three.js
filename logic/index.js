@@ -24,7 +24,7 @@ function init() {
   camera.lookAt(scene.position)
 
   var helper = new THREE.GridHelper(C_ROOM_WIDTH, 20)
-  helper.rotation.x = Math.PI / 2
+  // helper.rotation.x = Math.PI / 2
   scene.add(helper)
 
   renderer = new THREE.WebGLRenderer({
@@ -53,8 +53,6 @@ function init() {
 
   window.addEventListener('resize', onWindowResize, false)
 }
-
-
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
