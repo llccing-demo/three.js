@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas {
+      width: 100px;
+      height: 50px;
+      border: 1px solid #333
+    }
+  </style>
+</head>
+
+<body>
+    <canvas id='canvas'></canvas>
+
+  <script>
+    window.onload = function () {
+      draw()
+    }
+
+    function draw() {
+      var dom = document.getElementById('canvas');
+      var ctx = dom.getContext('2d')
+      ctx.font = '40px yahei';
+      
+      // ctx.font = "48px serif";
+      ctx.fillText('fillText', 100, 90)
+    }
+  </script>
+</body>
+
+</html>

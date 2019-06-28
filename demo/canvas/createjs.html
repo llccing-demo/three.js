@@ -1,0 +1,45 @@
+<html>
+
+<head>
+  <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+  <script>
+    function init() {
+      var stage = new createjs.Stage("demoCanvas");
+      var circle = new createjs.Shape();
+      circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 30);
+      circle.x = 100;
+      circle.y = 100;
+
+      var text = new createjs.Text("Hello World", "50px yahei", "#ff7700");
+      text.x = 180;
+      text.y = 80;
+      text.cursor = 'pointer'
+
+      text.addEventListener('click', function(event){
+        console.log(event)
+      })
+
+
+      circle.addEventListener('click', function(event){
+        console.log(event)
+      })
+
+      stage.addChild(text)
+      stage.addChild(circle);
+      stage.update();
+    }
+  </script>
+  <style>
+    #demoCanvas {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 0 1px 1px rgba(255,255,255, 0.5)
+    }
+  </style>
+</head>
+
+<body onload="init();">
+  <canvas id="demoCanvas" width="500" height="200"></canvas>
+</body>
+
+</html>
